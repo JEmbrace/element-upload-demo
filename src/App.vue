@@ -28,8 +28,7 @@
           width="180">
           <template>
             <!-- 上传按钮绑定click事件 -->
-            <el-button size='small' type="primary" @click="dialogVisible = true">上传<i class="el-icon-upload el-icon--right"></i></el-button>
-          </template>
+            <el-button size='small' type="primary" @click="dialogVisible = true">上传<i class="el-icon-upload el-icon--right"></i></el-button>          </template>
         </el-table-column>
       </el-table>
       <el-dialog
