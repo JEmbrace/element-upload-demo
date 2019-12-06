@@ -1,15 +1,12 @@
 <template>
   <div id="app">
-    <!-- 删除原本的内容 -->
+    
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  name: 'App'
 }
 </script>
 
