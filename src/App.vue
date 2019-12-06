@@ -27,10 +27,21 @@
           label="附件管理"
           width="180">
           <template>
+            <!-- 上传按钮绑定click事件 -->
             <el-button size='small' type="primary" @click="dialogVisible = true">上传<i class="el-icon-upload el-icon--right"></i></el-button>
           </template>
         </el-table-column>
       </el-table>
+      <el-dialog
+        title="提示"
+        :visible.sync="dialogVisible"
+        width="30%">
+        <span>这是一段信息</span>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span>
+      </el-dialog>
   </div>
 </template>
 
@@ -39,6 +50,8 @@ export default {
   name: 'App',
   data () {
     return {
+      // 添加属性，默认值为false,表示弹框不显示
+      dialogVisible: false,
       tableData: [{
         date: '2016-05-02',
         name: '王小虎',
@@ -56,7 +69,7 @@ export default {
         name: '王小虎',
         address: '上海市普陀区金沙江路'
       }]
-    }
+    } 
   }
 }
 </script>
