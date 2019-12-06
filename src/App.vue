@@ -27,7 +27,7 @@
           label="附件管理"
           width="180">
           <template>
-            <el-button size='small' type="primary" @click="dialogVisible = true">上传<i class="el-icon-upload el-icon--right"></i></el-button>
+            <el-button size='small' type="primary">上传<i class="el-icon-upload el-icon--right"></i></el-button>
           </template>
         </el-table-column>
       </el-table>
