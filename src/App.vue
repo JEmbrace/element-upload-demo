@@ -36,7 +36,16 @@
         title="提示"
         :visible.sync="dialogVisible"
         width="30%">
-        <span>这是一段信息</span>
+          <!-- 将<el-upload>代码添加到<el-dialog>代码块中 -->
+          <el-upload
+            class="upload-demo"
+            drag
+            action="https://jsonplaceholder.typicode.com/posts/"
+            :file-list="attachList">
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+            <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+          </el-upload>
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible = false">取 消</el-button>
           <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -52,6 +61,8 @@ export default {
     return {
       // 添加属性，默认值为false,表示弹框不显示
       dialogVisible: false,
+      // 设置文件列表属性attachList,需要绑定到<el-upload>元素上。默认值为空数组，表示文件列表为空
+      attachList: [],
       tableData: [{
         date: '2016-05-02',
         name: '王小虎',
@@ -90,4 +101,3 @@ export default {
   border: 1px solid #EBEEF5;
 }
 </style>
-
