@@ -33,7 +33,7 @@
         </el-table-column>
       </el-table>
       <el-dialog
-        title="提示"
+        title="附件管理"
         :visible.sync="dialogVisible"
         width="30%">
           <!-- 将<el-upload>代码添加到<el-dialog>代码块中 -->
@@ -93,6 +93,16 @@ export default {
   color: #2c3e50;
   margin: 50px 30px;
   text-align: center;
+}
+#app .el-dialog__header{
+  background:#EBEEF5;
+  border-bottom: 1px solid#EBEEF5;
+}
+#app .el-dialog{
+  text-align: left;
+}
+#app .el-upload,#app .el-upload .el-upload-dragger{
+  width: 100%;
 }
 </style>
 <style scoped>
