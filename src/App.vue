@@ -67,7 +67,7 @@ export default {
       dialogVisible: false,
      // 设置当前文件列表数据currentAttachList，每次用户点击上传按钮，该数据就会被赋值为当前按钮那一列tableData中的attachList数据
       currentAttachList: [],
-       //当前点击打开弹框的是那个按钮触发的
+      //当前点击打开弹框的按钮在表格中是那一列
       currentIndex: 0,
       tableData: [{
         date: '2016-05-02',
@@ -129,6 +129,9 @@ export default {
 }
 #app .el-upload,#app .el-upload .el-upload-dragger{
   width: 100%;
+}
+#app .el-upload-list li{
+  transition: none;
 }
 </style>
 <style scoped>
