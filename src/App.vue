@@ -26,9 +26,13 @@
           prop="attach"
           label="附件管理"
           width="180">
-          <template>
+          <template slot-scope="scope">
             <!-- 上传按钮绑定click事件 -->
-            <el-button size='small' type="primary" @click="dialogVisible = true">上传<i class="el-icon-upload el-icon--right"></i></el-button>          </template>
+            <el-button size='small' type="primary" @click="uploadBtnClick(scope.$index)">
+              上传
+              <i class="el-icon-upload el-icon--right"></i>
+            </el-button>          
+          </template>
         </el-table-column>
       </el-table>
       <el-dialog
@@ -40,7 +44,8 @@
             class="upload-demo"
             drag
             action="https://jsonplaceholder.typicode.com/posts/"
-            :file-list="attachList">
+            :file-list="currentAttachList"
+            :on-success="uploadSuccess">
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
             <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -60,26 +65,48 @@ export default {
     return {
       // 添加属性，默认值为false,表示弹框不显示
       dialogVisible: false,
-      // 设置文件列表属性attachList,需要绑定到<el-upload>元素上。默认值为空数组，表示文件列表为空
-      attachList: [],
+     // 设置当前文件列表数据currentAttachList，每次用户点击上传按钮，该数据就会被赋值为当前按钮那一列tableData中的attachList数据
+      currentAttachList: [],
+       //当前点击打开弹框的是那个按钮触发的
+      currentIndex: 0,
       tableData: [{
         date: '2016-05-02',
         name: '王小虎',
-        address: '上海市普陀区金沙江路'
+        address: '上海市普陀区金沙江路',
+        attachList:[]
       }, {
         date: '2016-05-04',
         name: '王小虎',
-        address: '上海市普陀区金沙江路'
+        address: '上海市普陀区金沙江路',
+        attachList:[]
       }, {
         date: '2016-05-01',
         name: '王小虎',
-        address: '上海市普陀区金沙江路'
+        address: '上海市普陀区金沙江路',
+        attachList:[]
       }, {
         date: '2016-05-03',
         name: '王小虎',
-        address: '上海市普陀区金沙江路'
+        address: '上海市普陀区金沙江路',
+        attachList:[]
       }]
     } 
+  },
+  methods: {
+    uploadBtnClick (index){
+      // 获取上传按钮对应那一列表格数据中的附件列表，赋值给currentAttachList
+      this.currentAttachList = this.tableData[index].attachList;
+      // 将控制弹框显示的dialogVisible设置为true，让弹框显示
+      this.dialogVisible = true;
+      // 设置currentIndex
+      this.currentIndex = index;
+    },
+    uploadSuccess(response, file, fileList){
+      var currentIndex = this.currentIndex;
+      this.tableData[currentIndex].attachList.push({
+        'name':file.name
+      });
+    }
   }
 }
 </script>
