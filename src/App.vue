@@ -44,6 +44,7 @@
             class="upload-demo"
             drag
             action="https://jsonplaceholder.typicode.com/posts/"
+            :on-remove="handleRemove"
             :file-list="currentAttachList"
             :on-success="uploadSuccess">
             <i class="el-icon-upload"></i>
@@ -94,18 +95,36 @@ export default {
   },
   methods: {
     uploadBtnClick (index){
+      console.log('uploadBtnClick');
+      console.log("this.tableData[index].attachList");
+      console.log(this.tableData[index].attachList);
       // 获取上传按钮对应那一列表格数据中的附件列表，赋值给currentAttachList
       this.currentAttachList = this.tableData[index].attachList;
+      console.log("this.currentAttachList");
+      console.log(this.currentAttachList);
       // 将控制弹框显示的dialogVisible设置为true，让弹框显示
       this.dialogVisible = true;
       // 设置currentIndex
       this.currentIndex = index;
     },
     uploadSuccess(response, file, fileList){
+      console.log(file);
+      console.log(fileList);
       var currentIndex = this.currentIndex;
       this.tableData[currentIndex].attachList.push({
         'name':file.name
       });
+    },
+    handleRemove(file, fileList){
+      var currentIndex = this.currentIndex;
+      var attachList = this.tableData[currentIndex].attachList;
+      var tempList = [];
+      for(var i = 0; i<attachList.length; i++){
+        if(file.name != attachList[i].name){
+          tempList.push(attachList[i]);
+        }
+      }
+      this.tableData[currentIndex].attachList = tempList;
     }
   }
 }
